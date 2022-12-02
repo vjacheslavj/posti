@@ -3,6 +3,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.BrowserFactory;
@@ -15,8 +16,11 @@ public class CommonHelpers {
 
     private final Logger LOGGER = LogManager.getLogger(this.getClass());
 
-    public void BaseFunction() {
-        browserFactory.setupBrowser();
+    public CommonHelpers() {
+        LOGGER.info("Setting driver location");
+        System.setProperty("webdriver.chrome.driver", "C:\\IdeaProjects\\Proj\\chromedriver\\chromedriver108.exe");
+        LOGGER.info("Opening browser window");
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
 
         wait = new WebDriverWait(driver, 10);

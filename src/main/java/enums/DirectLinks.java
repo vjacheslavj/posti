@@ -1,12 +1,11 @@
-package utils;
+package enums;
 
-public enum Environment {
-
+public enum DirectLinks {
     POSTI_SERVICE_POINTS("https://www.posti.fi/en/service-points-on-map");
 
     private final String link;
 
-    Environment(final String link) {
+    DirectLinks(final String link) {
         this.link = link;
     }
 

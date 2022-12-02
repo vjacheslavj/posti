@@ -8,6 +8,8 @@ import pageLocators.ServicePointsLocators;
 import pages.ServicePointsPage;
 import utils.Environment;
 
+import static enums.DirectLinks.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PostiServicePointsTest {
@@ -19,8 +21,7 @@ public class PostiServicePointsTest {
         LOGGER.info("This test is doing some actions on Posti service point page");
 
         CommonHelpers commonHelpers = new CommonHelpers();
-        Environment environment = new Environment();
-        commonHelpers.openPage(environment.getUrl());
+        commonHelpers.openPage(POSTI_SERVICE_POINTS.link());
 
         ServicePointsPage servicePointsPage = new ServicePointsPage(commonHelpers);
         servicePointsPage.lookingForAcceptCoockieBtn();

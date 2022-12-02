@@ -13,7 +13,7 @@ public class BrowserFactory {
 
     public void setupBrowser() {
         LOGGER.info("Setting driver location");
-        System.setProperty("webdriver.chrome.driver", "C://Users/vjermakovs/Desktop/New folder/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C://chromedriver108.exe");
         LOGGER.info("Opening browser window");
         driver = new ChromeDriver();
     }
