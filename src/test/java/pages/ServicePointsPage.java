@@ -7,6 +7,8 @@ import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageLocators.ServicePointsLocators;
 
@@ -44,7 +46,13 @@ public class ServicePointsPage {
         LOGGER.info("Choose my locale address and validate that search field is not empty");
 
         commonHelpers.click(servicePointsLocators.SHARE_YOUR_LOCATION_BTN);
-        Assertions.assertTrue(driver.findElement(servicePointsLocators.SEARCH_FIELD).isDisplayed(), "Search field is not empty");
+        commonHelpers.waitToBeVisible(servicePointsLocators.SEARCH_FIELD);
+        commonHelpers.waitElementToBeLocated(servicePointsLocators.SEARCH_FIELD);
+        commonHelpers.waitToBeClickable(servicePointsLocators.SEARCH_FIELD);
+        String searchFieldValue = commonHelpers.getSearchFieldText(servicePointsLocators.SEARCH_FIELD);
+        Assertions.assertFalse(searchFieldValue.isEmpty(), "Search field is empty");
+    //    Assertions.assertNotNull(commonHelpers.getSearchFieldText(servicePointsLocators.SEARCH_FIELD), "\"Search field is empty\"");
+    //    Assertions.assertEquals("", commonHelpers.getSearchFieldText(servicePointsLocators.SEARCH_FIELD), "Search field is not empty");
     }
 
 }
