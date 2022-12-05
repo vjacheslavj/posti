@@ -25,5 +25,7 @@ public class PostiServicePointsTest {
 
         ServicePointsPage servicePointsPage = new ServicePointsPage(commonHelpers);
         servicePointsPage.lookingForAcceptCoockieBtn();
+        servicePointsPage.chooseMyLocaleAddress();
+        servicePointsPage.enterPickupPointsAddress();
     }
 }

@@ -18,7 +18,7 @@ public class CommonHelpers {
 
     public CommonHelpers() {
         LOGGER.info("Setting driver location");
-        System.setProperty("webdriver.chrome.driver", "C:\\IdeaProjects\\Proj\\chromedriver\\chromedriver108.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\Proj\\chromedriver\\chromedriver106.exe");
         LOGGER.info("Opening browser window");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -42,10 +42,19 @@ public class CommonHelpers {
         wait.until(ExpectedConditions.presenceOfElementLocated(locator)).click();
     }
 
-    public void clickEnterText(By locator, String text) {
-        LOGGER.info("Waiting then field would be visible and entering text");
 
-        wait.until(ExpectedConditions.elementToBeClickable(locator)).sendKeys(text);
+    public void clickEnterText(By locator, String text) {
+        LOGGER.info("Waiting then field would be visible, clear it and entering text");
+        waitToBeClickable(locator);
+        driver.findElement(locator).clear();
+        driver.findElement(locator).sendKeys(text);
+//        wait.until(ExpectedConditions.elementToBeClickable(locator)).clear();
+//        wait.until(ExpectedConditions.elementToBeClickable(locator)).sendKeys(text);
+    }
+
+
+    public void waitToBeClickable(By locator) {
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
     public void closeBrowser() {
