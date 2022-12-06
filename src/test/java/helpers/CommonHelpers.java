@@ -43,13 +43,28 @@ public class CommonHelpers {
     public void click(By locator) {
         LOGGER.info("Clicking on element: " + locator);
 
-        wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+        wait.until(ExpectedConditions.presenceOfElementLocated(locator)).click();
+    }
+
+    public void click2(By locator) {
+        LOGGER.info("Clicking on element: " + locator);
+
+        WebElement element = driver.findElement(locator);
+        Actions a = new Actions(driver);
+        a.moveToElement(element).click().build().perform();
     }
 
     public void doubleClick(By locator) {
         WebElement element = driver.findElement(locator);
         Actions a = new Actions(driver);
         a.moveToElement(element).doubleClick().build().perform();
+    }
+
+    public void hover(By locator) {
+        WebElement element = driver.findElement(locator);
+        Actions a = new Actions(driver);
+        a.moveToElement(element).build().perform();
+
     }
 
 

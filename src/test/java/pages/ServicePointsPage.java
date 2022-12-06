@@ -51,7 +51,8 @@ public class ServicePointsPage {
         for(int i=0; i<=5; i++) {
             commonHelpers.waitToBeVisible(servicePointsLocators.POSTI_POINTS);
             commonHelpers.waitToBeClickable(servicePointsLocators.POSTI_POINTS);
-            commonHelpers.doubleClick(servicePointsLocators.POSTI_POINTS);
+            commonHelpers.hover(servicePointsLocators.POSTI_POINTS);
+            commonHelpers.click2(servicePointsLocators.POSTI_POINTS);
         }
     }
 
