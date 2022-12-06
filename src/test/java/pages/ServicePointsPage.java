@@ -32,6 +32,9 @@ public class ServicePointsPage {
     public void lookingForAcceptCoockieBtn() {
         LOGGER.info("Looking for Coockie accept button to click on it");
 
+       // commonHelpers.waitToBeVisible(servicePointsLocators.COOCKIE_ACCEPT_BTN);
+       // commonHelpers.waitElementToBeLocated(servicePointsLocators.COOCKIE_ACCEPT_BTN);
+       // commonHelpers.waitToBeClickable(servicePointsLocators.COOCKIE_ACCEPT_BTN);
         commonHelpers.click(servicePointsLocators.COOCKIE_ACCEPT_BTN);
     }
 
@@ -39,7 +42,41 @@ public class ServicePointsPage {
         LOGGER.info("Find search field and enter nearest pickup points address and then click on search button");
 
         commonHelpers.clickEnterText(servicePointsLocators.SEARCH_FIELD, address);
-        commonHelpers.click(servicePointsLocators.SEARCH_FIELD);
+        commonHelpers.click(servicePointsLocators.SEARCH_BTN);
+    }
+
+    public void findValidateNearestPoints() {
+        LOGGER.info("Choose my locale address and validate that search field is not empty");
+
+        for(int i=0; i<=5; i++) {
+            commonHelpers.waitToBeVisible(servicePointsLocators.POSTI_POINTS);
+            commonHelpers.waitToBeClickable(servicePointsLocators.POSTI_POINTS);
+            commonHelpers.doubleClick(servicePointsLocators.POSTI_POINTS);
+        }
+    }
+
+    public void zoomInPage() {
+        LOGGER.info("Click on zoom in button");
+
+        commonHelpers.waitToBeVisible(servicePointsLocators.ZOOMIN_BTN);
+        commonHelpers.waitToBeClickable(servicePointsLocators.ZOOMIN_BTN);
+        commonHelpers.click(servicePointsLocators.ZOOMIN_BTN);
+    }
+
+    public void zoomOutPage() {
+        LOGGER.info("Click on zoom out button");
+
+        commonHelpers.waitToBeVisible(servicePointsLocators.ZOOMOUT_BTN);
+        commonHelpers.waitToBeClickable(servicePointsLocators.ZOOMOUT_BTN);
+        commonHelpers.click(servicePointsLocators.ZOOMOUT_BTN);
+    }
+
+    public void openFullScreen() {
+        LOGGER.info("Click on full screen button");
+
+        commonHelpers.waitToBeVisible(servicePointsLocators.FULLSCREEN_BTN);
+        commonHelpers.waitToBeClickable(servicePointsLocators.FULLSCREEN_BTN);
+        commonHelpers.click(servicePointsLocators.FULLSCREEN_BTN);
     }
 
     public void chooseMyLocaleAddress() {
@@ -53,6 +90,16 @@ public class ServicePointsPage {
         Assertions.assertFalse(searchFieldValue.isEmpty(), "Search field is empty");
     //    Assertions.assertNotNull(commonHelpers.getSearchFieldText(servicePointsLocators.SEARCH_FIELD), "\"Search field is empty\"");
     //    Assertions.assertEquals("", commonHelpers.getSearchFieldText(servicePointsLocators.SEARCH_FIELD), "Search field is not empty");
+    }
+
+    public void sleep () {
+        try {
+            Thread.sleep(7000);
+        }
+        catch (Exception e) {
+
+        }
+
     }
 
 }

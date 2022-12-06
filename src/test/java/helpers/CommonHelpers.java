@@ -43,7 +43,13 @@ public class CommonHelpers {
     public void click(By locator) {
         LOGGER.info("Clicking on element: " + locator);
 
-        wait.until(ExpectedConditions.presenceOfElementLocated(locator)).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+    }
+
+    public void doubleClick(By locator) {
+        WebElement element = driver.findElement(locator);
+        Actions a = new Actions(driver);
+        a.moveToElement(element).doubleClick().build().perform();
     }
 
 
@@ -55,9 +61,9 @@ public class CommonHelpers {
         waitElementToBeLocated(locator);
         Actions a = new Actions(driver);
         WebElement element = driver.findElement(locator);
-       // a.moveToElement(element).keyDown(Keys.CONTROL).sendKeys("a", Keys.BACK_SPACE).perform();
+        // a.moveToElement(element).keyDown(Keys.CONTROL).sendKeys("a", Keys.BACK_SPACE).perform();
         a.moveToElement(element).doubleClick().click().sendKeys(Keys.BACK_SPACE).perform();
-      //  driver.findElement(locator).clear();
+        //  driver.findElement(locator).clear();
         driver.findElement(locator).sendKeys(text);
 //        wait.until(ExpectedConditions.elementToBeClickable(locator)).clear();
 //        wait.until(ExpectedConditions.elementToBeClickable(locator)).sendKeys(text);

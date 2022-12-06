@@ -27,5 +27,11 @@ public class PostiServicePointsTest {
         servicePointsPage.lookingForAcceptCoockieBtn();
         servicePointsPage.chooseMyLocaleAddress();
         servicePointsPage.enterPickupPointsAddress();
+        servicePointsPage.zoomInPage();
+        servicePointsPage.zoomOutPage();
+        servicePointsPage.openFullScreen();
+        servicePointsPage.openFullScreen();
+        servicePointsPage.findValidateNearestPoints();
+        commonHelpers.closeBrowser();
     }
 }
