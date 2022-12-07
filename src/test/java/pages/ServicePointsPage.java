@@ -46,7 +46,7 @@ public class ServicePointsPage {
     }
 
     public void findValidateNearestPoints() {
-        LOGGER.info("Choose my locale address and validate that search field is not empty");
+        LOGGER.info("Is checking that nearest first five points are visible on the map");
 
         for(int i=0; i<=5; i++) {
             commonHelpers.waitToBeVisible(servicePointsLocators.POSTI_POINTS);

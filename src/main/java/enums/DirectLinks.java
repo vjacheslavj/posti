@@ -1,7 +1,8 @@
 package enums;
 
 public enum DirectLinks {
-    POSTI_SERVICE_POINTS("https://www.posti.fi/en/service-points-on-map");
+    POSTI_SERVICE_POINTS("https://www.posti.fi/en/service-points-on-map"),
+    PARCELS_AND_TRACKING("https://www.posti.fi/en/private/parcels-and-tracking");
 
     private final String link;
 
