@@ -5,19 +5,11 @@ import helpers.CommonHelpers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pageLocators.ServicePointsLocators;
 
 public class ServicePointsPage {
 
     private final Logger LOGGER = LogManager.getLogger(this.getClass());
-
-    WebDriver driver;
-    WebDriverWait wait;
 
     private CommonHelpers commonHelpers;
     private ServicePointsLocators servicePointsLocators = new ServicePointsLocators();
@@ -32,23 +24,23 @@ public class ServicePointsPage {
     public void lookingForAcceptCoockieBtn() {
         LOGGER.info("Looking for Coockie accept button to click on it");
 
-       // commonHelpers.waitToBeVisible(servicePointsLocators.COOCKIE_ACCEPT_BTN);
-       // commonHelpers.waitElementToBeLocated(servicePointsLocators.COOCKIE_ACCEPT_BTN);
-       // commonHelpers.waitToBeClickable(servicePointsLocators.COOCKIE_ACCEPT_BTN);
+        commonHelpers.waitToBeVisible(servicePointsLocators.COOCKIE_ACCEPT_BTN);
+        commonHelpers.waitElementToBeLocated(servicePointsLocators.COOCKIE_ACCEPT_BTN);
+        commonHelpers.waitToBeClickable(servicePointsLocators.COOCKIE_ACCEPT_BTN);
         commonHelpers.click(servicePointsLocators.COOCKIE_ACCEPT_BTN);
     }
 
     public void enterPickupPointsAddress() {
         LOGGER.info("Find search field and enter nearest pickup points address and then click on search button");
 
-        commonHelpers.clickEnterText(servicePointsLocators.SEARCH_FIELD, address);
+        commonHelpers.doubleClickEnterText(servicePointsLocators.SEARCH_FIELD, address);
         commonHelpers.click(servicePointsLocators.SEARCH_BTN);
     }
 
     public void findValidateNearestPoints() {
         LOGGER.info("Is checking that nearest first five points are visible on the map");
 
-        for(int i=0; i<=5; i++) {
+        for(int i=0; i<5; i++) {
             commonHelpers.waitToBeVisible(servicePointsLocators.POSTI_POINTS);
             commonHelpers.waitToBeClickable(servicePointsLocators.POSTI_POINTS);
             commonHelpers.hover(servicePointsLocators.POSTI_POINTS);
@@ -89,18 +81,6 @@ public class ServicePointsPage {
         commonHelpers.waitToBeClickable(servicePointsLocators.SEARCH_FIELD);
         String searchFieldValue = commonHelpers.getSearchFieldText(servicePointsLocators.SEARCH_FIELD);
         Assertions.assertFalse(searchFieldValue.isEmpty(), "Search field is empty");
-    //    Assertions.assertNotNull(commonHelpers.getSearchFieldText(servicePointsLocators.SEARCH_FIELD), "\"Search field is empty\"");
-    //    Assertions.assertEquals("", commonHelpers.getSearchFieldText(servicePointsLocators.SEARCH_FIELD), "Search field is not empty");
-    }
-
-    public void sleep () {
-        try {
-            Thread.sleep(7000);
-        }
-        catch (Exception e) {
-
-        }
-
     }
 
 }

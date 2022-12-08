@@ -4,13 +4,9 @@ import helpers.CommonHelpers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
-import pageLocators.ServicePointsLocators;
 import pages.ServicePointsPage;
-import utils.Environment;
 
 import static enums.DirectLinks.*;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class PostiServicePointsTest {
 

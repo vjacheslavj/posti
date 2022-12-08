@@ -4,10 +4,7 @@ import helpers.CommonHelpers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
-import pages.LetterOrPostcardPage;
-import pages.LettersAndMailsPage;
-import pages.ParcelsAndTrackingPage;
-import pages.ServicePointsPage;
+import pages.*;
 
 import static enums.DirectLinks.PARCELS_AND_TRACKING;
 
@@ -22,15 +19,23 @@ public class PostiParcelsAndTrackingTest {
         ServicePointsPage servicePointsPage = new ServicePointsPage(commonHelpers);
         ParcelsAndTrackingPage parcelsAndTrackingPage = new ParcelsAndTrackingPage(commonHelpers);
         LettersAndMailsPage lettersAndMailsPage = new LettersAndMailsPage(commonHelpers);
-        LetterOrPostcardPage letterOrPostcardPage = new LetterOrPostcardPage(commonHelpers);
+        SendLetterOrPostcardPage sendLetterOrPostcardPage = new SendLetterOrPostcardPage(commonHelpers);
+        LetterPriceCalculatorPage letterPriceCalculatorPage = new LetterPriceCalculatorPage(commonHelpers);
 
         commonHelpers.openPage(PARCELS_AND_TRACKING.link());
         servicePointsPage.lookingForAcceptCoockieBtn();
         parcelsAndTrackingPage.enterParcelsShippingAddress();
         parcelsAndTrackingPage.validateItemTrackingPage();
+        parcelsAndTrackingPage.goBackToParcelsAndTrackingPage();
+        parcelsAndTrackingPage.enterWrongParcelsShippingAddress();
+        parcelsAndTrackingPage.validateTrackingPageWrongTrackingNr();
         parcelsAndTrackingPage.redirectToLettersAndMailPage();
-
-
+        lettersAndMailsPage.validateLetterAndMailPage();
+        lettersAndMailsPage.redirectToSendLetterPage();
+        sendLetterOrPostcardPage.validateSendLetterOrPostcardPage();
+        sendLetterOrPostcardPage.clickOnCalculateBtn();
+        letterPriceCalculatorPage.validateLetterPriceCalculatorPage();
+        letterPriceCalculatorPage.clickOnShowResultBtn();
         commonHelpers.closeBrowser();
     }
 }

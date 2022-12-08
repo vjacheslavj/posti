@@ -2,21 +2,16 @@ package helpers;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.BrowserFactory;
 
 public class CommonHelpers {
-    BrowserFactory browserFactory = new BrowserFactory();
 
-    WebDriver driver;
-    WebDriverWait wait;
+    public WebDriver driver;
+    public WebDriverWait wait;
 
     private final Logger LOGGER = LogManager.getLogger(this.getClass());
 
@@ -51,7 +46,21 @@ public class CommonHelpers {
 
         WebElement element = driver.findElement(locator);
         Actions a = new Actions(driver);
+        a.moveToElement(element).build().perform();
         a.moveToElement(element).click().build().perform();
+    }
+
+    public void moveToElement(By locator) {
+        LOGGER.info("Move to element: " + locator);
+
+        WebElement element = driver.findElement(locator);
+        Actions a = new Actions(driver);
+        a.moveToElement(element).build().perform();
+    }
+
+    public void scrollDownPage() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,700)", "");
     }
 
     public void doubleClick(By locator) {
@@ -76,12 +85,20 @@ public class CommonHelpers {
         waitElementToBeLocated(locator);
         Actions a = new Actions(driver);
         WebElement element = driver.findElement(locator);
-        // a.moveToElement(element).keyDown(Keys.CONTROL).sendKeys("a", Keys.BACK_SPACE).perform();
-        a.moveToElement(element).doubleClick().click().sendKeys(Keys.BACK_SPACE).perform();
-        //  driver.findElement(locator).clear();
+        a.moveToElement(element).click().sendKeys(Keys.BACK_SPACE).perform();
         driver.findElement(locator).sendKeys(text);
-//        wait.until(ExpectedConditions.elementToBeClickable(locator)).clear();
-//        wait.until(ExpectedConditions.elementToBeClickable(locator)).sendKeys(text);
+    }
+
+    public void doubleClickEnterText(By locator, String text) {
+        LOGGER.info("Waiting then field would be visible, clear it and entering text");
+
+        waitToBeVisible(locator);
+        waitToBeClickable(locator);
+        waitElementToBeLocated(locator);
+        Actions a = new Actions(driver);
+        WebElement element = driver.findElement(locator);
+        a.moveToElement(element).doubleClick().click().sendKeys(Keys.BACK_SPACE).perform();
+        driver.findElement(locator).sendKeys(text);
     }
 
 
@@ -109,10 +126,14 @@ public class CommonHelpers {
 
     public void sleep() {
         try {
-            Thread.sleep(3000);
+            Thread.sleep(1000);
         } catch (Exception e) {
 
         }
+    }
+
+    public void goBackInBrowser() {
+        driver.navigate().back();
     }
 
 }
